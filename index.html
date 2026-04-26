@@ -1579,19 +1579,10 @@ async function novaSendMessage() {
   novaSetTyping(true);
 
   try {
-    const OR_KEY = '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';
-
-    const response = await fetch('https://openrouter.ai/api/v1/chat/completions', {
+    const response = await fetch('https://terra-nova-khaki.vercel.app/api/chat', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OR_KEY}`,
-        'HTTP-Referer': 'https://katsden.github.io/TerraNova',
-        'X-Title': 'TerraNova Nova AI'
-      },
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        model: 'mistralai/mistral-7b-instruct:free',
-        max_tokens: 1000,
         messages: [
           { role: 'system', content: NOVA_SYSTEM_PROMPT },
           ...novaChatHistory.map(m => ({ role: m.role, content: m.content }))
